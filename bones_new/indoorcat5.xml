@@ -1,5 +1,5 @@
 <Entity>
-    _version=1 name= serialize=1 tags=teleportable_NOT,wand,item>
+    _version=1 name=serialize=1 tags=teleportable_NOT,wand,item>
     <GameEffectComponent
         _tags="enabled_in_inventory"
         effect="NO_WAND_EDITING"
