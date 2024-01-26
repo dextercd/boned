@@ -1,0 +1,37 @@
+<Entity tags="wand">
+
+  <Base file="data/entities/base_item.xml">
+    <ItemComponent
+      always_use_item_name_in_ui="1"
+      item_name="Suspiciously Good Wand" />
+
+    <SpriteComponent
+      image_file="data/items_gfx/wands/wand_0821.png"
+      offset_x="4"
+      offset_y="3" />
+
+    <SimplePhysicsComponent _enabled="0" />
+  </Base>
+
+  <AbilityComponent
+    mana_charge_speed="6969"
+    mana_max="420"
+    sprite_file="data/items_gfx/wands/wand_0821.png"
+    ui_name="Suspiciously Good Wand"
+    use_gun_script="1">
+    <gun_config
+      reload_time="10"
+      deck_capacity="26" />
+    <gunaction_config
+      fire_rate_wait="10" />
+  </AbilityComponent>
+
+  <ManaReloaderComponent _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
+
+  <LuaComponent
+    script_item_picked_up="data/entities/items/wands/wand_good/wand_good_pickup.lua"
+    remove_after_executed="1" />
+
+  <LifetimeComponent _enabled="0" _tags="enabled_in_inventory,enabled_in_hand" lifetime="36000" />
+
+</Entity>

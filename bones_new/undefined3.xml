@@ -1,0 +1,44 @@
+<Entity tags="wand">
+  <Base file="data/entities/base_item.xml">
+    <ItemComponent
+      auto_pickup="1"
+      permanently_attached="1"
+      always_use_item_name_in_ui="1"
+      item_name="Blindness" />
+    <SpriteComponent
+      image_file="data/items_gfx/wands/wand_0821.png"
+      offset_x="4"
+      offset_y="3" />
+    <SimplePhysicsComponent _enabled="0" />
+  </Base>
+
+  <InheritTransformComponent />
+
+	<AudioComponent
+		file="data/audio/Desktop/misc.bank"
+    event_root="game_effect/blindness" />
+
+	<UIIconComponent
+		icon_sprite_file="data/ui_gfx/status_indicators/blindness.png"
+		name="Blind"
+		description="You're blind, old man!"
+    is_perk="1" />
+
+  <Entity>
+    <ItemComponent
+      _tags="enabled_in_inventory" />
+    <InheritTransformComponent />
+    <PhysicsBodyComponent
+      _tags="enabled_in_inventory"
+      gravity_scale_if_has_no_image_shapes="0" />
+    <SpriteComponent
+      _enabled="0"
+      _tags="enabled_in_inventory"
+      image_file="data/fonts/font_pixel_white.xml"
+      is_text_sprite="1"
+      offset_x="16"
+      offset_y="24"
+      text="Jebaited!"
+      z_index="-1" />
+  </Entity>
+</Entity>
