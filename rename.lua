@@ -692,7 +692,7 @@ function add_username(wand_xml, username)
     end
 
     -- We store the original name in the wand and check it first so the script
-    -- idempotent
+    -- is idempotent
     local original_name = item_comp.attr.original_name
     if
         original_name == nil and
