@@ -1,37 +1,47 @@
-<Entity tags="wand">
+<Entity
+    tags="wand" >
 
-  <Base file="data/entities/base_item.xml">
-    <ItemComponent
-      always_use_item_name_in_ui="1"
-      item_name="Suspiciously Good Wand" />
+    <Base
+        file="data/entities/base_item.xml" >
 
-    <SpriteComponent
-      image_file="data/items_gfx/wands/wand_0821.png"
-      offset_x="4"
-      offset_y="3" />
+        <ItemComponent
+            always_use_item_name_in_ui="1"
+            item_name="undefined4: Suspiciously Good Wand"
+            original_name="Suspiciously Good Wand" />
 
-    <SimplePhysicsComponent _enabled="0" />
-  </Base>
+        <SpriteComponent
+            image_file="data/items_gfx/wands/wand_0821.png"
+            offset_x="4"
+            offset_y="3" />
 
-  <AbilityComponent
-    mana_charge_speed="6969"
-    mana_max="420"
-    sprite_file="data/items_gfx/wands/wand_0821.png"
-    ui_name="Suspiciously Good Wand"
-    use_gun_script="1">
-    <gun_config
-      reload_time="10"
-      deck_capacity="26" />
-    <gunaction_config
-      fire_rate_wait="10" />
-  </AbilityComponent>
+        <SimplePhysicsComponent
+            _enabled="0" />
+    </Base>
 
-  <ManaReloaderComponent _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
+    <AbilityComponent
+        mana_charge_speed="6969"
+        mana_max="420"
+        sprite_file="data/items_gfx/wands/wand_0821.png"
+        ui_name="undefined4: Suspiciously Good Wand"
+        use_gun_script="1" >
 
-  <LuaComponent
-    script_item_picked_up="data/entities/items/wands/wand_good/wand_good_pickup.lua"
-    remove_after_executed="1" />
+        <gun_config
+            deck_capacity="26"
+            reload_time="10" />
 
-  <LifetimeComponent _enabled="0" _tags="enabled_in_inventory,enabled_in_hand" lifetime="36000" />
+        <gunaction_config
+            fire_rate_wait="10" />
+    </AbilityComponent>
 
+    <ManaReloaderComponent
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
+
+    <LuaComponent
+        remove_after_executed="1"
+        script_item_picked_up="data/entities/items/wands/wand_good/wand_good_pickup.lua" />
+
+    <LifetimeComponent
+        _enabled="0"
+        _tags="enabled_in_inventory,enabled_in_hand"
+        lifetime="36000" />
 </Entity>

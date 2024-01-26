@@ -1,1053 +1,1395 @@
-<Entity tags="wand">
-  <AbilityComponent
-    mana_charge_speed="6969"
-    mana_max="420"
-    sprite_file="data/particles/eye.xml"
-    ui_name="Wand of Baldness"
-    use_gun_script="1">
-    <gun_config
-      reload_time="24"
-      deck_capacity="28" />
-    <gunaction_config
-      fire_rate_wait="10"
-      sprite="data/particles/eye.xml"
-      trail_material="acid"
-      trail_material_amount="1" />
-  </AbilityComponent>
+<Entity
+    tags="wand" >
 
-  <HotspotComponent
-    _tags="shoot_pos"
-    offset.x="0"
-    offset.y="0" />
-
-  <Base file="data/entities/base_item.xml">
-    <ItemComponent
-      always_use_item_name_in_ui="1"
-      item_name="Wand of Baldness"
-      play_hover_animation="0"
-      play_spinning_animation="0"
-      ui_description="$actiondesc_blindness"
-      ui_display_description_on_pick_up_hint="1" />
-
-    <SpriteComponent
-      _tags="item,enabled_in_world,enabled_in_hand"
-      alpha="0.5"
-      image_file="data/particles/eye.xml"
-      next_rect_animation="default"
-      rect_animation="default"
-      z_index="-1.5" />
-
-    <SimplePhysicsComponent _enabled="0" />
-  </Base>
-
-  <ManaReloaderComponent _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
-
-  <LuaComponent
-    script_item_picked_up="data/entities/items/wands/wand_good/wand_good_pickup.lua"
-    remove_after_executed="1" />
-
-  <MagicConvertMaterialComponent
-    _tags="enabled_in_world,enabled_in_hand"
-    kill_when_finished="0"
-    steps_per_frame="2"
-    from_material="acid_gas"
-    to_material="magic_gas_hp_regeneration"
-    clean_stains="0"
-    is_circle="1"
-    radius="32"
-    loop="1" />
-
-  <!-- Portal-like effect -->
-  <ParticleEmitterComponent
-    _tags="enabled_in_world,item_identified"
-    emitted_material_name="spark_purple"
-    gravity.y="0"
-    lifetime_min="3"
-    lifetime_max="4"
-    x_vel_min="0"
-    x_vel_max="0"
-    y_vel_min="0"
-    y_vel_max="0"
-    count_min="115"
-    count_max="115"
-    render_on_grid="1"
-    fade_based_on_lifetime="0"
-    area_circle_radius.min="8"
-    area_circle_radius.max="16"
-    cosmetic_force_create="1"
-    collide_with_grid="0"
-    airflow_force="0.051"
-    airflow_time="1.01"
-    airflow_scale="0.03"
-    emission_interval_min_frames="11"
-    emission_interval_max_frames="12"
-    emit_cosmetic_particles="1"
-    velocity_always_away_from_center="11"
-    render_back="1"
-    is_emitting="1" >
-  </ParticleEmitterComponent>
-
-  <ParticleEmitterComponent
-    _tags="enabled_in_world,item_identified"
-    emitted_material_name="spark_purple"
-    gravity.y="0"
-    lifetime_min="3"
-    lifetime_max="4"
-    x_vel_min="0"
-    x_vel_max="0"
-    y_vel_min="0"
-    y_vel_max="0"
-    count_min="1"
-    count_max="1"
-    render_on_grid="1"
-    fade_based_on_lifetime="1"
-    area_circle_radius.min="0"
-    area_circle_radius.max="15"
-    cosmetic_force_create="1"
-    collide_with_grid="0"
-    airflow_force="0.051"
-    airflow_time="1.01"
-    airflow_scale="0.03"
-    emission_interval_min_frames="12"
-    emission_interval_max_frames="12"
-    emit_cosmetic_particles="1"
-    velocity_always_away_from_center="0"
-    render_back="1"
-    is_emitting="1" >
-  </ParticleEmitterComponent>
-
-  <!-- Effect like a vacuum field -->
-  <ParticleEmitterComponent
-    _tags="enabled_in_world,item_identified"
-    emitted_material_name="spark_purple"
-    gravity.y="0"
-    lifetime_min="0.5"
-    lifetime_max="2.5"
-    count_min="4"
-    count_max="4"
-    render_on_grid="1"
-    fade_based_on_lifetime="1"
-    area_circle_radius.min="32"
-    area_circle_radius.max="32"
-    cosmetic_force_create="0"
-    airflow_force="0.8"
-    airflow_time="0.11"
-    airflow_scale="0.05"
-    emission_interval_min_frames="1"
-    emission_interval_max_frames="1"
-    emit_cosmetic_particles="1"
-    attractor_force="8"
-    draw_as_long="1"
-    is_emitting="1" />
-
-  <!-- Visible even in unexplored areas (like the Light modifier spell) -->
-  <LightComponent radius="200" />
-  <SpriteComponent
-    alpha="0.55"
-    image_file="data/particles/fog_of_war_hole_128.xml"
-    smooth_filtering="1"
-    fog_of_war_hole="1" />
-
-  <!-- Short red trail -->
-  <SpriteParticleEmitterComponent
-    _tags="enabled_in_hand,item_identified"
-    sprite_file="data/particles/tinyspark_01.xml"
-    delay="0"
-    lifetime="0.2"
-    color.r="1" color.g="0" color.b="0" color.a="0.5"
-    color_change.r="0" color_change.g="0" color_change.b="0" color_change.a="-0.2"
-    velocity.x="0" velocity.y="0"
-    gravity.x="0" gravity.y="0"
-    velocity_slowdown="0"
-    rotation="0"
-    angular_velocity="1"
-    use_velocity_as_rotation="1"
-    scale.x="1" scale.y="1"
-    scale_velocity.x="0" scale_velocity.y="0"
-    emission_interval_min_frames="1"
-    emission_interval_max_frames="1"
-    count_min="10"
-    count_max="10"
-    randomize_rotation.min="-3.1415"
-    randomize_rotation.max="3.1415"
-    randomize_position.min_x="0"
-    randomize_position.max_x="0"
-    randomize_position.min_y="0"
-    randomize_position.max_y="0"
-    randomize_velocity.min_x="-5"
-    randomize_velocity.max_x="5"
-    randomize_velocity.min_y="-5"
-    randomize_velocity.max_y="5" />
-
-  <!-- Fading trail -->
-  <ParticleEmitterComponent
-    _tags="enabled_in_hand,enabled_in_world,item_identified"
-    emitted_material_name="plasma_fading"
-    gravity.y="0"
-    lifetime_min="3"
-    lifetime_max="30"
-    count_min="1"
-    count_max="1"
-    render_on_grid="0"
-    fade_based_on_lifetime="1"
-    area_circle_radius.min="0"
-    area_circle_radius.max="0"
-    cosmetic_force_create="0"
-    airflow_force="0.1"
-    airflow_time="10"
-    airflow_scale="0.05"
-    emission_interval_min_frames="1"
-    emission_interval_max_frames="1"
-    emit_cosmetic_particles="1"
-    draw_as_long="1"
-    is_emitting="1" />
-
-  <!-- Background glow -->
-  <SpriteParticleEmitterComponent
-    _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
-    sprite_file="data/particles/fog_of_war_hole_128.xml"
-    sprite_centered="1"
-    additive="1"
-    emissive="0"
-    color.r="1" color.g="0" color.b="1" color.a="0.3"
-    count_min="1"
-    lifetime="-1"
-    emission_interval_min_frames="-1"
-    emission_interval_max_frames="-1"
-    render_back="1" />
-
-  <!-- THE EYES -->
-  <SpriteParticleEmitterComponent
-    _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
-    sprite_file="data/particles/eye.png"
-    sprite_centered="1"
-    additive="1"
-    emissive="1"
-    lifetime="5"
-    emission_interval_min_frames="30"
-    emission_interval_max_frames="30"
-    color.a="0.2"
-    color.r="1"
-    color.g="0"
-    color.b="0"
-    color_change.a="0.4"
-    color_change.r="-0.5"
-    color_change.g="-0.1"
-    color_change.b="-0.2"
-    randomize_position.min_x="-20"
-    randomize_position.min_y="-20"
-    randomize_position.max_x="20"
-    randomize_position.max_y="20"
-    randomize_alpha.min="-0.8"
-    randomize_alpha.max="0" />
-
-  <!-- Homing -->
-
-  <GhostComponent
-    _enabled="1"
-    _tags="enabled_in_world"
-    hunt_box_radius="412"
-    new_hunt_target_check_every="150"
-    speed="20"
-    die_if_no_home="0" />
-
-  <PathFindingGridMarkerComponent
-    _enabled="1"
-    _tags="enabled_in_world"
-    marker_offset_x="0"
-    marker_offset_y="0"
-    marker_work_flag="16" />
-
-  <GenomeDataComponent
-    _tags="enabled_in_world"
-    herd_id="ghost"
-    food_chain_rank="0"
-    is_predator="1" />
-
-  <SpriteAnimatorComponent
-    _tags="enabled_in_world" />
-
-  <GameEffectComponent
-    _tags="enabled_in_hand"
-    effect="EDIT_WANDS_EVERYWHERE"
-    frames="-1" />
-
-  <!-- Spells -->
-
-  <Entity serialize="1" tags="card_action">
-    <ItemActionComponent
-      _enabled="0"
-      action_id="LIGHT_BULLET_TRIGGER" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      item_name="Buhee"
-      permanently_attached="1"
-      ui_sprite="data/ui_gfx/gun_actions/matter_eater.png" />
-  </Entity>
-
-  <Entity serialize="1" tags="card_action">
-    <ItemActionComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      action_id="CHAINSAW" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      item_name="Reopen the bets"
-      permanently_attached="1"
-      ui_sprite="data/ui_gfx/items/evil_eye.png" />
-  </Entity>
-
-  <!-- Transforming wand -->
-  <Entity serialize="1" tags="card_action">
     <AbilityComponent
-      mana_charge_speed="-1000"
-      mana_max="1000"
-      sprite_file="data/items_gfx/handgun.xml"
-      ui_name="Bait and Switch"
-      use_gun_script="1">
-      <gun_config
-        reload_time="24"
-        deck_capacity="8" />
-      <gunaction_config
-        fire_rate_wait="10"
-        sprite="data/items_gfx/handgun.xml" />
+        mana_charge_speed="6969"
+        mana_max="420"
+        sprite_file="data/particles/eye.xml"
+        ui_name="undefined1: Wand of Baldness"
+        use_gun_script="1" >
+
+        <gun_config
+            deck_capacity="28"
+            reload_time="24" />
+
+        <gunaction_config
+            fire_rate_wait="10"
+            sprite="data/particles/eye.xml"
+            trail_material="acid"
+            trail_material_amount="1" />
     </AbilityComponent>
-    <ItemActionComponent _enabled="0" _tags="enabled_in_world" />
-    <InheritTransformComponent />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      item_name="Bait and Switch"
-      play_spinning_animation="0"
-      ui_description="We love casting spells"
-      ui_sprite="data/items_gfx/handgun.xml" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
+
+    <HotspotComponent
+        _tags="shoot_pos"
+        offset.x="0"
+        offset.y="0" />
+
+    <Base
+        file="data/entities/base_item.xml" >
+
+        <ItemComponent
+            always_use_item_name_in_ui="1"
+            item_name="undefined1: Wand of Baldness"
+            original_name="Wand of Baldness"
+            play_hover_animation="0"
+            play_spinning_animation="0"
+            ui_description="$actiondesc_blindness"
+            ui_display_description_on_pick_up_hint="1" />
+
+        <SpriteComponent
+            _tags="item,enabled_in_world,enabled_in_hand"
+            alpha="0.5"
+            image_file="data/particles/eye.xml"
+            next_rect_animation="default"
+            rect_animation="default"
+            z_index="-1.5" />
+
+        <SimplePhysicsComponent
+            _enabled="0" />
+    </Base>
+
+    <ManaReloaderComponent
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory" />
+
+    <LuaComponent
+        remove_after_executed="1"
+        script_item_picked_up="data/entities/items/wands/wand_good/wand_good_pickup.lua" />
+
+    <MagicConvertMaterialComponent
+        _tags="enabled_in_world,enabled_in_hand"
+        clean_stains="0"
+        from_material="acid_gas"
+        is_circle="1"
+        kill_when_finished="0"
+        loop="1"
+        radius="32"
+        steps_per_frame="2"
+        to_material="magic_gas_hp_regeneration" />
+
+    <ParticleEmitterComponent
+        _tags="enabled_in_world,item_identified"
+        airflow_force="0.051"
+        airflow_scale="0.03"
+        airflow_time="1.01"
+        area_circle_radius.min="8"
+        area_circle_radius.max="16"
+        collide_with_grid="0"
+        cosmetic_force_create="1"
+        count_min="115"
+        count_max="115"
+        emission_interval_min_frames="11"
+        emission_interval_max_frames="12"
+        emit_cosmetic_particles="1"
+        emitted_material_name="spark_purple"
+        fade_based_on_lifetime="0"
+        gravity.y="0"
+        is_emitting="1"
+        lifetime_min="3"
+        lifetime_max="4"
+        render_back="1"
+        render_on_grid="1"
+        velocity_always_away_from_center="11"
+        x_vel_min="0"
+        x_vel_max="0"
+        y_vel_min="0"
+        y_vel_max="0" />
+
+    <ParticleEmitterComponent
+        _tags="enabled_in_world,item_identified"
+        airflow_force="0.051"
+        airflow_scale="0.03"
+        airflow_time="1.01"
+        area_circle_radius.min="0"
+        area_circle_radius.max="15"
+        collide_with_grid="0"
+        cosmetic_force_create="1"
+        count_min="1"
+        count_max="1"
+        emission_interval_min_frames="12"
+        emission_interval_max_frames="12"
+        emit_cosmetic_particles="1"
+        emitted_material_name="spark_purple"
+        fade_based_on_lifetime="1"
+        gravity.y="0"
+        is_emitting="1"
+        lifetime_min="3"
+        lifetime_max="4"
+        render_back="1"
+        render_on_grid="1"
+        velocity_always_away_from_center="0"
+        x_vel_min="0"
+        x_vel_max="0"
+        y_vel_min="0"
+        y_vel_max="0" />
+
+    <ParticleEmitterComponent
+        _tags="enabled_in_world,item_identified"
+        airflow_force="0.8"
+        airflow_scale="0.05"
+        airflow_time="0.11"
+        area_circle_radius.min="32"
+        area_circle_radius.max="32"
+        attractor_force="8"
+        cosmetic_force_create="0"
+        count_min="4"
+        count_max="4"
+        draw_as_long="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+        emit_cosmetic_particles="1"
+        emitted_material_name="spark_purple"
+        fade_based_on_lifetime="1"
+        gravity.y="0"
+        is_emitting="1"
+        lifetime_min="0.5"
+        lifetime_max="2.5"
+        render_on_grid="1" />
+
+    <LightComponent
+        radius="200" />
+
     <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/items_gfx/handgun.xml" />
-    <VelocityComponent _tags="enabled_in_world" />
+        alpha="0.55"
+        fog_of_war_hole="1"
+        image_file="data/particles/fog_of_war_hole_128.xml"
+        smooth_filtering="1" />
 
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/wand_ghost.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    <SpriteParticleEmitterComponent
+        _tags="enabled_in_hand,item_identified"
+        angular_velocity="1"
+        color.a="0.5"
+        color.b="0"
+        color.g="0"
+        color.r="1"
+        color_change.a="-0.2"
+        color_change.b="0"
+        color_change.g="0"
+        color_change.r="0"
+        count_min="10"
+        count_max="10"
+        delay="0"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+        gravity.x="0"
+        gravity.y="0"
+        lifetime="0.2"
+        randomize_position.min_x="0"
+        randomize_position.min_y="0"
+        randomize_position.max_x="0"
+        randomize_position.max_y="0"
+        randomize_rotation.min="-3.1415"
+        randomize_rotation.max="3.1415"
+        randomize_velocity.min_x="-5"
+        randomize_velocity.min_y="-5"
+        randomize_velocity.max_x="5"
+        randomize_velocity.max_y="5"
+        rotation="0"
+        scale.x="1"
+        scale.y="1"
+        scale_velocity.x="0"
+        scale_velocity.y="0"
+        sprite_file="data/particles/tinyspark_01.xml"
+        use_velocity_as_rotation="1"
+        velocity.x="0"
+        velocity.y="0"
+        velocity_slowdown="0" />
+
+    <ParticleEmitterComponent
+        _tags="enabled_in_hand,enabled_in_world,item_identified"
+        airflow_force="0.1"
+        airflow_scale="0.05"
+        airflow_time="10"
+        area_circle_radius.min="0"
+        area_circle_radius.max="0"
+        cosmetic_force_create="0"
+        count_min="1"
+        count_max="1"
+        draw_as_long="1"
+        emission_interval_min_frames="1"
+        emission_interval_max_frames="1"
+        emit_cosmetic_particles="1"
+        emitted_material_name="plasma_fading"
+        fade_based_on_lifetime="1"
+        gravity.y="0"
+        is_emitting="1"
+        lifetime_min="3"
+        lifetime_max="30"
+        render_on_grid="0" />
+
+    <SpriteParticleEmitterComponent
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+        additive="1"
+        color.a="0.3"
+        color.b="1"
+        color.g="0"
+        color.r="1"
+        count_min="1"
+        emission_interval_min_frames="-1"
+        emission_interval_max_frames="-1"
+        emissive="0"
+        lifetime="-1"
+        render_back="1"
+        sprite_centered="1"
+        sprite_file="data/particles/fog_of_war_hole_128.xml" />
+
+    <SpriteParticleEmitterComponent
+        _tags="enabled_in_world,enabled_in_hand,enabled_in_inventory"
+        additive="1"
+        color.a="0.2"
+        color.b="0"
+        color.g="0"
+        color.r="1"
+        color_change.a="0.4"
+        color_change.b="-0.2"
+        color_change.g="-0.1"
+        color_change.r="-0.5"
+        emission_interval_min_frames="30"
+        emission_interval_max_frames="30"
+        emissive="1"
+        lifetime="5"
+        randomize_alpha.min="-0.8"
+        randomize_alpha.max="0"
+        randomize_position.min_x="-20"
+        randomize_position.min_y="-20"
+        randomize_position.max_x="20"
+        randomize_position.max_y="20"
+        sprite_centered="1"
+        sprite_file="data/particles/eye.png" />
+
+    <GhostComponent
+        _enabled="1"
+        _tags="enabled_in_world"
+        die_if_no_home="0"
+        hunt_box_radius="412"
+        new_hunt_target_check_every="150"
+        speed="20" />
+
+    <PathFindingGridMarkerComponent
+        _enabled="1"
+        _tags="enabled_in_world"
+        marker_offset_x="0"
+        marker_offset_y="0"
+        marker_work_flag="16" />
+
+    <GenomeDataComponent
+        _tags="enabled_in_world"
+        food_chain_rank="0"
+        herd_id="ghost"
+        is_predator="1" />
+
+    <SpriteAnimatorComponent
+        _tags="enabled_in_world" />
+
+    <GameEffectComponent
+        _tags="enabled_in_hand"
+        effect="EDIT_WANDS_EVERYWHERE"
+        frames="-1" />
 
     <Entity
-      serialize="1"
-      tags="card_action">
-      <ItemActionComponent action_id="MANA_REDUCE" />
-      <ItemComponent ui_sprite="data/ui_gfx/gun_actions/mana.png" />
+        serialize="1"
+        tags="card_action" >
+
+        <ItemActionComponent
+            _enabled="0"
+            action_id="LIGHT_BULLET_TRIGGER" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            item_name="Buhee"
+            permanently_attached="1"
+            ui_sprite="data/ui_gfx/gun_actions/matter_eater.png" />
     </Entity>
 
     <Entity
-      serialize="1"
-      tags="card_action">
-      <ItemActionComponent action_id="CHAINSAW" />
-      <ItemComponent ui_sprite="data/ui_gfx/gun_actions/chainsaw.png" />
+        serialize="1"
+        tags="card_action" >
+
+        <ItemActionComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            action_id="CHAINSAW" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            item_name="Reopen the bets"
+            permanently_attached="1"
+            ui_sprite="data/ui_gfx/items/evil_eye.png" />
     </Entity>
 
     <Entity
-      serialize="1"
-      tags="card_action">
-      <ItemActionComponent _tags="enabled_in_world" action_id="GAMMA" />
-      <ItemComponent _tags="enabled_in_world" ui_sprite="data/ui_gfx/gun_actions/gamma.png" />
+        serialize="1"
+        tags="card_action" >
+
+        <AbilityComponent
+            mana_charge_speed="-1000"
+            mana_max="1000"
+            sprite_file="data/items_gfx/handgun.xml"
+            ui_name="Bait and Switch"
+            use_gun_script="1" >
+
+            <gun_config
+                deck_capacity="8"
+                reload_time="24" />
+
+            <gunaction_config
+                fire_rate_wait="10"
+                sprite="data/items_gfx/handgun.xml" />
+        </AbilityComponent>
+
+        <ItemActionComponent
+            _enabled="0"
+            _tags="enabled_in_world" />
+
+        <InheritTransformComponent />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            item_name="Bait and Switch"
+            play_spinning_animation="0"
+            ui_description="We love casting spells"
+            ui_sprite="data/items_gfx/handgun.xml" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/items_gfx/handgun.xml" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/wand_ghost.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+
+        <Entity
+            serialize="1"
+            tags="card_action" >
+
+            <ItemActionComponent
+                action_id="MANA_REDUCE" />
+
+            <ItemComponent
+                ui_sprite="data/ui_gfx/gun_actions/mana.png" />
+        </Entity>
+
+        <Entity
+            serialize="1"
+            tags="card_action" >
+
+            <ItemActionComponent
+                action_id="CHAINSAW" />
+
+            <ItemComponent
+                ui_sprite="data/ui_gfx/gun_actions/chainsaw.png" />
+        </Entity>
+
+        <Entity
+            serialize="1"
+            tags="card_action" >
+
+            <ItemActionComponent
+                _tags="enabled_in_world"
+                action_id="GAMMA" />
+
+            <ItemComponent
+                _tags="enabled_in_world"
+                ui_sprite="data/ui_gfx/gun_actions/gamma.png" />
+        </Entity>
+
+        <Entity
+            serialize="1"
+            tags="card_action" >
+
+            <ItemActionComponent
+                _tags="enabled_in_world"
+                action_id="REGENERATION_FIELD" />
+
+            <ItemComponent
+                _tags="enabled_in_world"
+                ui_sprite="data/ui_gfx/gun_actions/regeneration_field.png" />
+        </Entity>
     </Entity>
 
     <Entity
-      serialize="1"
-      tags="card_action">
-      <ItemActionComponent _tags="enabled_in_world" action_id="REGENERATION_FIELD" />
-      <ItemComponent _tags="enabled_in_world" ui_sprite="data/ui_gfx/gun_actions/regeneration_field.png" />
-    </Entity>
-  </Entity>
+        serialize="1"
+        tags="tablet" >
 
-  <!-- Tablet -->
+        <BookComponent />
 
-  <Entity serialize="1" tags="tablet">
+        <UIInfoComponent
+            _tags="enabled_in_world"
+            name="Acid Tablet of WUOTE" />
 
-    <BookComponent />
+        <HomingComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            detect_distance="128"
+            homing_targeting_coeff="130"
+            homing_velocity_multiplier="0.86" />
 
-    <UIInfoComponent
-      _tags="enabled_in_world"
-      name="Acid Tablet of WUOTE" />
+        <PhysicsBodyComponent
+            _tags="enabled_in_world"
+            allow_sleep="1"
+            angular_damping="0"
+            auto_clean="1"
+            fixed_rotation="0"
+            is_bullet="1"
+            linear_damping="0"
+            on_death_leave_physics_body="0"
+            uid="1" />
 
-    <HomingComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      homing_targeting_coeff="130"
-      detect_distance="128"
-      homing_velocity_multiplier="0.86" />
+        <PhysicsImageShapeComponent
+            body_id="1"
+            centered="1"
+            image_file="data/items_gfx/emerald_tablet.png"
+            material="rock_box2d_hard" />
 
-    <PhysicsBodyComponent
-      _tags="enabled_in_world"
-      uid="1"
-      allow_sleep="1"
-      angular_damping="0"
-      fixed_rotation="0"
-      is_bullet="1"
-      linear_damping="0"
-      auto_clean="1"
-      on_death_leave_physics_body="0" />
+        <PhysicsThrowableComponent
+            max_throw_speed="130"
+            throw_force_coeff="1.5" />
 
-    <PhysicsImageShapeComponent
-      body_id="1"
-      centered="1"
-      image_file="data/items_gfx/emerald_tablet.png"
-      material="rock_box2d_hard" />
+        <ProjectileComponent
+            _tags="enabled_in_world"
+            lifetime="-1"
+            never_hit_player="1"
+            penetrate_entities="1" />
 
-    <PhysicsThrowableComponent
-      max_throw_speed="130"
-      throw_force_coeff="1.5" />
+        <VelocityComponent
+            _tags="enabled_in_world"
+            affect_physics_bodies="1" />
 
-    <ProjectileComponent
-      _tags="enabled_in_world"
-      lifetime="-1"
-      penetrate_entities="1"
-      never_hit_player="1" />
+        <InheritTransformComponent />
 
-    <VelocityComponent
-      _tags="enabled_in_world"
-      affect_physics_bodies="1" />
-
-    <InheritTransformComponent />
-
-    <ItemComponent
-      _tags="enabled_in_world"
-      max_child_items="0"
-      is_pickable="1"
-      is_equipable_forced="1"
-      ui_sprite="data/ui_gfx/items/emerald_tablet.png"
-      preferred_inventory="QUICK"
-      always_use_item_name_in_ui="1"
-      item_name="Acid Tablet of WUOTE"
-      ui_description="Hello my name is WUOTE i am an elite noita together player
+        <ItemComponent
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            is_pickable="1"
+            item_name="Acid Tablet of WUOTE"
+            max_child_items="0"
+            preferred_inventory="QUICK"
+            ui_description="Hello my name is WUOTE i am an elite noita together player
 my main role is ACID DRINKER, i keep an eye on the fridge
 and get all the chainsaws and sdd manas quicker than
 everyone else i also use coal mines as my main camping area
-you cannot find a stronger player than me there" />
+you cannot find a stronger player than me there"
+            ui_sprite="data/ui_gfx/items/emerald_tablet.png" />
 
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_hand,not_enabled_in_wand"
-      offset_x="4"
-      offset_y="4"
-      image_file="data/items_gfx/in_hand/emerald_tablet_in_hand.png" />
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_hand,not_enabled_in_wand"
+            image_file="data/items_gfx/in_hand/emerald_tablet_in_hand.png"
+            offset_x="4"
+            offset_y="4" />
 
-    <HitboxComponent
-      _tags="enabled_in_world"
-      aabb_min_x="-3"
-      aabb_max_x="3"
-      aabb_min_y="-5"
-      aabb_max_y="0" />
+        <HitboxComponent
+            _tags="enabled_in_world"
+            aabb_min_x="-3"
+            aabb_min_y="-5"
+            aabb_max_x="3"
+            aabb_max_y="0" />
 
-    <LightComponent
-      _tags="enabled_in_world"
-      r="255"
-      g="0"
-      b="0"
-      radius="64"
-      fade_out_time="0.75" />
+        <LightComponent
+            _tags="enabled_in_world"
+            b="0"
+            fade_out_time="0.75"
+            g="0"
+            r="255"
+            radius="64" />
 
-    <ParticleEmitterComponent
-      _tags="enabled_in_world,enabled_in_hand"
-      emitted_material_name="spark_red"
-      offset.x="0"
-      offset.y="0"
-      x_pos_offset_min="0"
-      x_pos_offset_max="0"
-      y_pos_offset_min="0"
-      y_pos_offset_max="0"
-      x_vel_min="0"
-      x_vel_max="0"
-      y_vel_min="0"
-      y_vel_max="0"
-      count_min="1"
-      count_max="10"
-      emission_interval_min_frames="1"
-      emission_interval_max_frames="3"
-      area_circle_radius.max="6"
-      emit_cosmetic_particles="1"
-      create_real_particles="0"
-      lifetime_min="2.5"
-      lifetime_max="6.5"
-      render_on_grid="1"
-      fade_based_on_lifetime="1"
-      airflow_force="0.5"
-      airflow_time="0.01"
-      airflow_scale="0.05"
-      collide_with_grid="0"
-      gravity.y="0"
-      render_back="1" />
+        <ParticleEmitterComponent
+            _tags="enabled_in_world,enabled_in_hand"
+            airflow_force="0.5"
+            airflow_scale="0.05"
+            airflow_time="0.01"
+            area_circle_radius.max="6"
+            collide_with_grid="0"
+            count_min="1"
+            count_max="10"
+            create_real_particles="0"
+            emission_interval_min_frames="1"
+            emission_interval_max_frames="3"
+            emit_cosmetic_particles="1"
+            emitted_material_name="spark_red"
+            fade_based_on_lifetime="1"
+            gravity.y="0"
+            lifetime_min="2.5"
+            lifetime_max="6.5"
+            offset.x="0"
+            offset.y="0"
+            render_back="1"
+            render_on_grid="1"
+            x_pos_offset_min="0"
+            x_pos_offset_max="0"
+            x_vel_min="0"
+            x_vel_max="0"
+            y_pos_offset_min="0"
+            y_pos_offset_max="0"
+            y_vel_min="0"
+            y_vel_max="0" />
 
-    <!-- Portal-like effect (except it's acid) -->
-    <ParticleEmitterComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      emitted_material_name="acid"
-      gravity.y="0"
-      lifetime_min="1"
-      lifetime_max="5"
-      x_vel_min="0"
-      x_vel_max="0"
-      y_vel_min="0"
-      y_vel_max="0"
-      count_min="20"
-      count_max="20"
-      render_on_grid="1"
-      fade_based_on_lifetime="0"
-      area_circle_radius.min="10"
-      area_circle_radius.max="10"
-      cosmetic_force_create="1"
-      collide_with_grid="0"
-      airflow_force="0.051"
-      airflow_time="1.01"
-      airflow_scale="0.03"
-      emission_interval_min_frames="12"
-      emission_interval_max_frames="12"
-      emit_cosmetic_particles="0"
-      velocity_always_away_from_center="11"
-      render_back="1"
-      is_emitting="1" >
-    </ParticleEmitterComponent>
+        <ParticleEmitterComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            airflow_force="0.051"
+            airflow_scale="0.03"
+            airflow_time="1.01"
+            area_circle_radius.min="10"
+            area_circle_radius.max="10"
+            collide_with_grid="0"
+            cosmetic_force_create="1"
+            count_min="20"
+            count_max="20"
+            emission_interval_min_frames="12"
+            emission_interval_max_frames="12"
+            emit_cosmetic_particles="0"
+            emitted_material_name="acid"
+            fade_based_on_lifetime="0"
+            gravity.y="0"
+            is_emitting="1"
+            lifetime_min="1"
+            lifetime_max="5"
+            render_back="1"
+            render_on_grid="1"
+            velocity_always_away_from_center="11"
+            x_vel_min="0"
+            x_vel_max="0"
+            y_vel_min="0"
+            y_vel_max="0" />
 
-    <AbilityComponent
-      ui_name="Acid Tablet of WUOTE"
-      throw_as_item="1">
-      <gun_config deck_capacity="0" />
-    </AbilityComponent>
+        <AbilityComponent
+            throw_as_item="1"
+            ui_name="Acid Tablet of WUOTE" >
 
-  </Entity>
-
-  <!-- Rant -->
-  <Entity serialize="1" tags="card_action,stopwatch_lap">
-    <InheritTransformComponent />
-    <ItemActionComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      action_id="SLOW_BUT_STEADY" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      custom_pickup_string="$logdesc_all_spells"
-      item_name="Rant"
-      play_spinning_animation="0"
-      ui_sprite="data/ui_gfx/gun_actions/lifetime_infinite.png" />
-    <SimplePhysicsComponent
-      _enabled="0"
-      _tags="enabled_in_world" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <!-- time = GameGetFrameNum() - lap_start_time -->
-    <VariableStorageComponent _tags="enabled_in_world" name="time" value_int="0" />
-    <VariableStorageComponent _tags="enabled_in_world" name="lap_start_time" value_int="0" />
-    <!-- update the timer every frame -->
-    <LuaComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      script_source_file="data/scripts/buildings/racing_cart_move.lua" />
-    <!-- draw the stopwatch -->
-    <LuaComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      script_source_file="data/scripts/buildings/racing_stopwatch.lua" />
-    <!-- collision is needed to make timer start from when item is dropped, instead of the start of the run -->
-    <LuaComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      script_collision_trigger_hit="data/scripts/buildings/racing_cart_checkpoint.lua"
-      execute_every_n_frame="-1" />
-    <!-- trigger exactly once to reset the timer -->
-    <CollisionTriggerComponent
-      _tags="enabled_in_world"
-      required_tag="finish_line"
-      destroy_this_entity_when_triggered="0"
-      remove_component_when_triggered="1" />
-    <!-- finish_line entity required for collision -->
-    <Entity tags="finish_line">
-      <InheritTransformComponent _enabled="0" _tags="enabled_in_world" />
+            <gun_config
+                deck_capacity="0" />
+        </AbilityComponent>
     </Entity>
-  </Entity>
 
-  <!-- Fungus -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <AbilityComponent
-      base_item_file="data/entities/base_item.xml" />
-    <ItemActionComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      action_id="CHAINSAW" />
-    <InheritTransformComponent />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      item_name="Consume!"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      auto_pickup="1"
-      ui_sprite="data/ui_gfx/status_indicators/trip.png"
-      uses_remaining="9999" />
-    <MaterialInventoryComponent />
-    <ParticleEmitterComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      emitted_material_name="fungi"
-      create_real_particles="1"
-      emission_interval_min_frames="1"
-      emission_interval_max_frames="1"
-      x_pos_offset_min="-10"
-      x_pos_offset_max="10"
-      y_pos_offset_min="-10"
-      y_pos_offset_max="10" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="item_identified,enabled_in_world"
-      image_file="data/ui_gfx/status_indicators/trip.png"
-      offset_x="6"
-      offset_y="19" />
-  </Entity>
+    <Entity
+        serialize="1"
+        tags="card_action,stopwatch_lap" >
 
-  <!-- Single-use chainsaw -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <AbilityComponent
-      base_item_file="data/entities/base_item.xml" />
-    <ItemActionComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      action_id="CHAINSAW" />
-    <InheritTransformComponent />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      item_name="Disposable Chainsaw"
-      preferred_inventory="FULL"
-      auto_pickup="1"
-      uses_remaining="1" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="item_identified,enabled_in_world"
-      image_file="data/ui_gfx/gun_actions/chainsaw.png"
-      offset_x="8"
-      offset_y="17" />
-  </Entity>
+        <InheritTransformComponent />
 
-  <!-- April -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <AbilityComponent throw_as_item="1">
-      <gun_config deck_capacity="0" />
-    </AbilityComponent>
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless April"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      ui_description="Throw this spell to throw the run..."
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/items_gfx/emerald_tablet.png"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/boss_pit/boss_pit.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <ItemActionComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            action_id="SLOW_BUT_STEADY" />
 
-  <!-- May -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <AbilityComponent throw_as_item="1">
-      <gun_config deck_capacity="0" />
-    </AbilityComponent>
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            custom_pickup_string="$logdesc_all_spells"
+            item_name="Rant"
+            play_spinning_animation="0"
+            ui_sprite="data/ui_gfx/gun_actions/lifetime_infinite.png" />
 
-    <InheritTransformComponent only_position="1" />
+        <SimplePhysicsComponent
+            _enabled="0"
+            _tags="enabled_in_world" />
 
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless May"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      ui_description="Will you Suffer?"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
+        <VelocityComponent
+            _tags="enabled_in_world" />
 
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/projectiles_gfx/thunderball.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="time"
+            value_int="0" />
 
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/thundermage.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="lap_start_time"
+            value_int="0" />
 
-  </Entity>
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            script_source_file="data/scripts/buildings/racing_cart_move.lua" />
 
-  <!-- June -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless June"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      ui_description="5... 4... 3... 2... 1..."
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world,sunbaby_sprite"
-      offset_x="50"
-      offset_y="50"
-      emissive="1"
-      additive="1"
-      image_file="data/props_gfx/sun_small.png"
-      smooth_filtering="1"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/items/pickup/sun/sunbaby.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            script_source_file="data/scripts/buildings/racing_stopwatch.lua" />
 
-  <!-- July -->
-  <Entity serialize="1" tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless July"
-      ui_description="Warning: Explosives are explosive"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _enabled="0" _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/props_gfx/barrel_unstable.png"
-      offset_x="5"
-      offset_y="6"
-      update_transform_rotation="0" />
-    <VelocityComponent _enabled="0" _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/miner_fire.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="-1"
+            script_collision_trigger_hit="data/scripts/buildings/racing_cart_checkpoint.lua" />
 
-  <!-- August -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless August"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      ui_description="Saving Grace saved you!"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/projectiles_gfx/spore_pod.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/boss_alchemist/boss_alchemist.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <CollisionTriggerComponent
+            _tags="enabled_in_world"
+            destroy_this_entity_when_triggered="0"
+            remove_component_when_triggered="1"
+            required_tag="finish_line" />
 
-  <!-- September -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless September"
-      play_spinning_animation="0"
-      ui_description="Oh-"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/ui_gfx/gun_actions/mine.png"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/projectiles/deck/mine.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <Entity
+            tags="finish_line" >
 
-  <!-- October -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless October"
-      play_spinning_animation="0"
-      ui_description="HeWasLookingAtChat"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world,item_identified"
-      image_file="data/projectiles_gfx/black_hole.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/misc/essences/water_explosion.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+            <InheritTransformComponent
+                _enabled="0"
+                _tags="enabled_in_world" />
+        </Entity>
+    </Entity>
 
-  <!-- November -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless November"
-      play_spinning_animation="0"
-      ui_description="Is it shop time?"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/projectiles_gfx/background_cleaner.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <MagicConvertMaterialComponent
-      _enabled="0"
-      _tags="laser_toggle"
-      from_any_material="1"
-      to_material="magic_liquid_unstable_polymorph"
-      steps_per_frame="5"
-      loop="0"
-      is_circle="1"
-      radius="20" />
-    <LifetimeComponent
-      _enabled="0"
-      _tags="laser_toggle"
-      lifetime="4" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-  </Entity>
+    <Entity
+        serialize="1"
+        tags="card_action" >
 
-  <!-- December -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless December"
-      play_spinning_animation="0"
-      preferred_inventory="FULL"
-      ui_description="Control yourself"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world,item_identified"
-      image_file="data/projectiles_gfx/black_hole.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <MagicConvertMaterialComponent
-      _enabled="0"
-      _tags="laser_toggle"
-      from_any_material="1"
-      to_material="magic_liquid_random_polymorph"
-      steps_per_frame="5"
-      loop="0"
-      is_circle="1"
-      radius="20" />
-    <LifetimeComponent
-      _enabled="0"
-      _tags="laser_toggle"
-      lifetime="4" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-  </Entity>
+        <AbilityComponent
+            base_item_file="data/entities/base_item.xml" />
 
-  <!-- January -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless January"
-      play_spinning_animation="0"
-      ui_description="GIGAFREEZE"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/enemies_gfx/iceskull.xml"
-      offset_x="8"
-      offset_y="17"
-      update_transform_rotation="0" />
-    <SpriteParticleEmitterComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      sprite_file="data/particles/shine_02.xml"
-      delay="0"
-      lifetime="2"
-      color.r="1" color.g="1" color.b="1" color.a="0.5"
-      color_change.r="0" color_change.g="0" color_change.b="0" color_change.a="-1"
-      velocity.x="0" velocity.y="0"
-      gravity.x="0" gravity.y="10"
-      velocity_slowdown="0.5"
-      rotation="0"
-      angular_velocity="0"
-      use_velocity_as_rotation="0"
-      scale.x="1" scale.y="1"
-      scale_velocity.x="0" scale_velocity.y="0"
-      emission_interval_min_frames="1"
-      emission_interval_max_frames="1"
-      count_min="1" count_max="2"
-      randomize_rotation.min="-3.1415"
-      randomize_rotation.max="3.1415"
-      randomize_angular_velocity.min="-1"
-      randomize_angular_velocity.max="1"
-      randomize_position.min_x="-2"
-      randomize_position.max_x="2"
-      randomize_position.min_y="-8"
-      randomize_position.max_y="-4"
-      randomize_velocity.min_y="0"
-      randomize_velocity.max_y="10"
-      randomize_velocity.min_x="-2"
-      randomize_velocity.max_x="2" />
-    <VelocityComponent _tags="enabled_in_world" />
-    <VariableStorageComponent _tags="enabled_in_world" name="status" value_int="1" />
-    <LuaComponent _enabled="0" _tags="enabled_in_world" execute_every_n_frame="150" script_source_file="data/scripts/props/trap_laser_toggle.lua" />
-    <VariableStorageComponent _tags="enabled_in_world,necrobot_entity_file" value_string="data/entities/animals/iceskull.xml" />
-    <LuaComponent _enabled="0" _tags="laser_toggle" script_source_file="data/scripts/status_effects/necrobot_end.lua" />
-  </Entity>
+        <ItemActionComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            action_id="CHAINSAW" />
 
-  <!-- February -->
-  <Entity
-    serialize="1"
-    tags="card_action">
-    <InheritTransformComponent only_position="1" />
-    <ItemComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      always_use_item_name_in_ui="1"
-      is_equipable_forced="1"
-      item_name="RIP Deathless February"
-      play_spinning_animation="0"
-      ui_display_description_on_pick_up_hint="1"
-      ui_description="???"
-      ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
-    <SimplePhysicsComponent _tags="enabled_in_world" />
-    <SpriteComponent
-      _enabled="0"
-      _tags="enabled_in_world"
-      image_file="data/fonts/font_pixel_white.xml"
-      is_text_sprite="1"
-      offset_x="7"
-      offset_y="15"
-      text="Hey, that hasn't happened yet!"
-      update_transform_rotation="0"
-      z_index="-1" />
-    <VelocityComponent _tags="enabled_in_world" />
-  </Entity>
+        <InheritTransformComponent />
 
-  <!-- Extra -->
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            auto_pickup="1"
+            item_name="Consume!"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_sprite="data/ui_gfx/status_indicators/trip.png"
+            uses_remaining="9999" />
 
-  <!-- Automatic fungal shifts -->
-  <LuaComponent
-    _enabled="1"
-    execute_on_added="1"
-    execute_on_removed="1"
-    execute_every_n_frame="7200"
-    script_source_file="data/scripts/status_effects/effect_trip_03.lua" />
+        <MaterialInventoryComponent />
 
-  <!-- Remove perks when wand is dropped -->
-  <LuaComponent
-    _enabled="0"
-    _tags="enabled_in_world"
-    execute_every_n_frame="1"
-    remove_after_executed="1"
-    script_source_file="data/scripts/magic/null_room/check.lua" />
-  <Entity tags="null_room_check" />
-  <Entity tags="null_room_check" />
-  <Entity tags="null_room_check" />
+        <ParticleEmitterComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            create_real_particles="1"
+            emission_interval_min_frames="1"
+            emission_interval_max_frames="1"
+            emitted_material_name="fungi"
+            x_pos_offset_min="-10"
+            x_pos_offset_max="10"
+            y_pos_offset_min="-10"
+            y_pos_offset_max="10" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="item_identified,enabled_in_world"
+            image_file="data/ui_gfx/status_indicators/trip.png"
+            offset_x="6"
+            offset_y="19" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <AbilityComponent
+            base_item_file="data/entities/base_item.xml" />
+
+        <ItemActionComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            action_id="CHAINSAW" />
+
+        <InheritTransformComponent />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            auto_pickup="1"
+            item_name="Disposable Chainsaw"
+            preferred_inventory="FULL"
+            uses_remaining="1" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="item_identified,enabled_in_world"
+            image_file="data/ui_gfx/gun_actions/chainsaw.png"
+            offset_x="8"
+            offset_y="17" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <AbilityComponent
+            throw_as_item="1" >
+
+            <gun_config
+                deck_capacity="0" />
+        </AbilityComponent>
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless April"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_description="Throw this spell to throw the run..."
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/items_gfx/emerald_tablet.png"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/boss_pit/boss_pit.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <AbilityComponent
+            throw_as_item="1" >
+
+            <gun_config
+                deck_capacity="0" />
+        </AbilityComponent>
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless May"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_description="Will you Suffer?"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/projectiles_gfx/thunderball.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/thundermage.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless June"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_description="5... 4... 3... 2... 1..."
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world,sunbaby_sprite"
+            additive="1"
+            emissive="1"
+            image_file="data/props_gfx/sun_small.png"
+            offset_x="50"
+            offset_y="50"
+            smooth_filtering="1"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/items/pickup/sun/sunbaby.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless July"
+            ui_description="Warning: Explosives are explosive"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _enabled="0"
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/props_gfx/barrel_unstable.png"
+            offset_x="5"
+            offset_y="6"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _enabled="0"
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/miner_fire.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless August"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_description="Saving Grace saved you!"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/projectiles_gfx/spore_pod.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/boss_alchemist/boss_alchemist.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless September"
+            play_spinning_animation="0"
+            ui_description="Oh-"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/ui_gfx/gun_actions/mine.png"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/projectiles/deck/mine.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless October"
+            play_spinning_animation="0"
+            ui_description="HeWasLookingAtChat"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world,item_identified"
+            image_file="data/projectiles_gfx/black_hole.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/misc/essences/water_explosion.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless November"
+            play_spinning_animation="0"
+            ui_description="Is it shop time?"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/projectiles_gfx/background_cleaner.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <MagicConvertMaterialComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            from_any_material="1"
+            is_circle="1"
+            loop="0"
+            radius="20"
+            steps_per_frame="5"
+            to_material="magic_liquid_unstable_polymorph" />
+
+        <LifetimeComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            lifetime="4" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless December"
+            play_spinning_animation="0"
+            preferred_inventory="FULL"
+            ui_description="Control yourself"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world,item_identified"
+            image_file="data/projectiles_gfx/black_hole.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <MagicConvertMaterialComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            from_any_material="1"
+            is_circle="1"
+            loop="0"
+            radius="20"
+            steps_per_frame="5"
+            to_material="magic_liquid_random_polymorph" />
+
+        <LifetimeComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            lifetime="4" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless January"
+            play_spinning_animation="0"
+            ui_description="GIGAFREEZE"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/enemies_gfx/iceskull.xml"
+            offset_x="8"
+            offset_y="17"
+            update_transform_rotation="0" />
+
+        <SpriteParticleEmitterComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            angular_velocity="0"
+            color.a="0.5"
+            color.b="1"
+            color.g="1"
+            color.r="1"
+            color_change.a="-1"
+            color_change.b="0"
+            color_change.g="0"
+            color_change.r="0"
+            count_min="1"
+            count_max="2"
+            delay="0"
+            emission_interval_min_frames="1"
+            emission_interval_max_frames="1"
+            gravity.x="0"
+            gravity.y="10"
+            lifetime="2"
+            randomize_angular_velocity.min="-1"
+            randomize_angular_velocity.max="1"
+            randomize_position.min_x="-2"
+            randomize_position.min_y="-8"
+            randomize_position.max_x="2"
+            randomize_position.max_y="-4"
+            randomize_rotation.min="-3.1415"
+            randomize_rotation.max="3.1415"
+            randomize_velocity.min_x="-2"
+            randomize_velocity.min_y="0"
+            randomize_velocity.max_x="2"
+            randomize_velocity.max_y="10"
+            rotation="0"
+            scale.x="1"
+            scale.y="1"
+            scale_velocity.x="0"
+            scale_velocity.y="0"
+            sprite_file="data/particles/shine_02.xml"
+            use_velocity_as_rotation="0"
+            velocity.x="0"
+            velocity.y="0"
+            velocity_slowdown="0.5" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world"
+            name="status"
+            value_int="1" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            execute_every_n_frame="150"
+            script_source_file="data/scripts/props/trap_laser_toggle.lua" />
+
+        <VariableStorageComponent
+            _tags="enabled_in_world,necrobot_entity_file"
+            value_string="data/entities/animals/iceskull.xml" />
+
+        <LuaComponent
+            _enabled="0"
+            _tags="laser_toggle"
+            script_source_file="data/scripts/status_effects/necrobot_end.lua" />
+    </Entity>
+
+    <Entity
+        serialize="1"
+        tags="card_action" >
+
+        <InheritTransformComponent
+            only_position="1" />
+
+        <ItemComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            always_use_item_name_in_ui="1"
+            is_equipable_forced="1"
+            item_name="RIP Deathless February"
+            play_spinning_animation="0"
+            ui_description="???"
+            ui_display_description_on_pick_up_hint="1"
+            ui_sprite="data/ui_gfx/gun_actions/death_trigger.png" />
+
+        <SimplePhysicsComponent
+            _tags="enabled_in_world" />
+
+        <SpriteComponent
+            _enabled="0"
+            _tags="enabled_in_world"
+            image_file="data/fonts/font_pixel_white.xml"
+            is_text_sprite="1"
+            offset_x="7"
+            offset_y="15"
+            text="Hey, that hasn't happened yet!"
+            update_transform_rotation="0"
+            z_index="-1" />
+
+        <VelocityComponent
+            _tags="enabled_in_world" />
+    </Entity>
+
+    <LuaComponent
+        _enabled="1"
+        execute_every_n_frame="7200"
+        execute_on_added="1"
+        execute_on_removed="1"
+        script_source_file="data/scripts/status_effects/effect_trip_03.lua" />
+
+    <LuaComponent
+        _enabled="0"
+        _tags="enabled_in_world"
+        execute_every_n_frame="1"
+        remove_after_executed="1"
+        script_source_file="data/scripts/magic/null_room/check.lua" />
+
+    <Entity
+        tags="null_room_check" />
+
+    <Entity
+        tags="null_room_check" />
+
+    <Entity
+        tags="null_room_check" />
 </Entity>

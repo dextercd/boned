@@ -39,7 +39,7 @@
         stat_times_player_has_shot="0"
         swim_propel_amount="0"
         throw_as_item="0"
-        ui_name="GUUUUUUUUN"
+        ui_name="dexter cd2: GUUUUUUUUN"
         use_entity_file_as_projectile_info_proxy="0"
         use_gun_script="1" >
 
@@ -184,11 +184,12 @@
         is_identified="1"
         is_pickable="1"
         is_stackable="0"
-        item_name="GUUUUUUUUN"
+        item_name="dexter cd2: GUUUUUUUUN"
         item_pickup_radius="14.1"
         max_child_items="0"
         next_frame_pickable="1125"
         npc_next_frame_pickable="0"
+        original_name="GUUUUUUUUN"
         permanently_attached="0"
         play_hover_animation="0"
         play_pick_sound="1"
@@ -207,11 +208,11 @@
 
     <LightComponent
         _tags="enabled_in_world"
+        b="118"
         blinking_freq="1"
         fade_out_time="0"
-        r="255"
         g="178"
-        b="118"
+        r="255"
         radius="64"
         update_properties="0" />
 
@@ -226,6 +227,7 @@
         alpha="1"
         emissive="0"
         fog_of_war_hole="0"
+        has_special_scale="1"
         image_file="data/items_gfx/wands/custom/actual_wand.xml"
         is_text_sprite="0"
         kill_entity_after_finished="0"
@@ -233,7 +235,6 @@
         next_rect_animation="default"
         rect_animation="default"
         smooth_filtering="0"
-        has_special_scale="1"
         special_scale_x="3"
         special_scale_y="3"
         update_transform="1"
@@ -467,8 +468,19 @@
             updates_velocity="1" />
     </Entity>
 
-    <GameEffectComponent _tags="enabled_in_hand" effect="DRUNK" />
-    <GameEffectComponent _tags="enabled_in_hand" effect="KNOCKBACK_IMMUNITY" />
-    <GameEffectComponent _tags="enabled_in_hand" effect="MOVEMENT_SLOWER_2X" />
-    <GameEffectComponent _tags="enabled_in_hand" effect="MOVEMENT_SLOWER" />
+    <GameEffectComponent
+        _tags="enabled_in_hand"
+        effect="DRUNK" />
+
+    <GameEffectComponent
+        _tags="enabled_in_hand"
+        effect="KNOCKBACK_IMMUNITY" />
+
+    <GameEffectComponent
+        _tags="enabled_in_hand"
+        effect="MOVEMENT_SLOWER_2X" />
+
+    <GameEffectComponent
+        _tags="enabled_in_hand"
+        effect="MOVEMENT_SLOWER" />
 </Entity>
