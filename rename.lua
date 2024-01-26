@@ -673,7 +673,7 @@ function get_wand_build_key(xml)
 
         local spell_text = action_comp.attr.action_id
         local item_comp = find_component(child, "ItemComponent")
-        if item_comp.permanently_attached == "1" then
+        if item_comp.attr.permanently_attached == "1" then
             spell_text = "AC:" .. spell_text
         end
 
