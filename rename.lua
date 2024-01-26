@@ -598,14 +598,23 @@ end
 ---@param g string
 ---@return string[]
 function glob(g)
-    local dir_it = io.popen("dir /b *.xml")
+    local dir_it
+    local prepend = ""
+    if jit.os == 'Windows' then
+        dir_it = io.popen("dir /b " .. g)
+        prepend = g:match([=[^[^/\]*[/\]]=])
+    else
+        dir_it = io.popen("sh -c 'ls -1 " .. g .. "'")
+    end
+
     if not dir_it then
         error("Couldn't get list of .xml files")
     end
 
+
     local file_names = {}
     for file in dir_it:lines() do
-        table.insert(file_names, file)
+        table.insert(file_names, prepend .. file)
     end
 
     dir_it:close()
@@ -615,7 +624,7 @@ end
 ---@param file_name string
 ---@return string
 function read_entire_file(file_name)
-    local handle = io.open(file_name, "r")
+    local handle = io.open(file_name, "rb")
     if not handle then
         error("Couldn't open file " .. file_name)
     end
@@ -629,7 +638,7 @@ end
 ---@param file_name string
 ---@param content string
 function overwrite_file(file_name, content)
-    local handle = io.open(file_name, "w")
+    local handle = io.open(file_name, "wb")
     if not handle then
         error("Could not open " .. file_name .. " for writing")
     end
@@ -713,19 +722,30 @@ end
 
 local seen_builds = {}
 
-local xml_files = glob("*.xml")
-for _, xml_file_name in ipairs(xml_files) do
-    print("Processing: " .. xml_file_name)
-    local username = xml_file_name:match([[(.*)%.xml]])
-    local wand_xml = nxml.parse(read_entire_file(xml_file_name))
+for _, arg in ipairs(arg) do
+    local xml_files
+    if arg:match('%.xml$') then
+        xml_files = {arg}
+    else
+        -- Assume it's a folder
+        if not arg:sub(-1, -1):match("[/\\]") then
+            arg = arg .. "/"
+        end
+        xml_files = glob(arg .. "*.xml")
+    end
+    for _, xml_file_name in ipairs(xml_files) do
+        print("Processing: " .. xml_file_name)
+        local username = xml_file_name:match([[([^/\]*)%.xml]])
+        local wand_xml = nxml.parse(read_entire_file(xml_file_name))
 
-    add_username(wand_xml, username)
-    overwrite_file(xml_file_name, nxml.tostring(wand_xml, false, "    "))
+        add_username(wand_xml, username)
+        overwrite_file(xml_file_name, nxml.tostring(wand_xml, false, "    "))
 
-    local wand_build_key = get_wand_build_key(wand_xml)
+        local wand_build_key = get_wand_build_key(wand_xml)
 
-    seen_builds[wand_build_key] = seen_builds[wand_build_key] or {}
-    table.insert(seen_builds[wand_build_key], xml_file_name)
+        seen_builds[wand_build_key] = seen_builds[wand_build_key] or {}
+        table.insert(seen_builds[wand_build_key], xml_file_name)
+    end
 end
 
 for key, names in pairs(seen_builds) do
