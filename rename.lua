@@ -748,6 +748,8 @@ for _, arg in ipairs(arg) do
     end
 end
 
+print()
+print("\n\n# Potential duplicates")
 for key, names in pairs(seen_builds) do
     if #names > 1 then
         print("Wand build seen multiple times: " .. key)
@@ -755,4 +757,11 @@ for key, names in pairs(seen_builds) do
             print("- " .. name)
         end
     end
+end
+
+print("\n\n# Wand builds")
+for key, names in pairs(seen_builds) do
+    print("Name(s): " .. table.concat(names, ", "))
+    print("Build: " .. key)
+    print()
 end
