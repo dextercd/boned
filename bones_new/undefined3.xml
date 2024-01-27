@@ -15,16 +15,7 @@
             image_file="data/items_gfx/wands/wand_0821.png"
             offset_x="4"
             offset_y="3" />
-
-        <SimplePhysicsComponent
-            _enabled="0" />
     </Base>
-
-    <InheritTransformComponent />
-
-    <AudioComponent
-        event_root="game_effect/blindness"
-        file="data/audio/Desktop/misc.bank" />
 
     <UIIconComponent
         description="You're blind, old man!"
@@ -32,11 +23,34 @@
         is_perk="1"
         name="Blind" />
 
+    <GameAreaEffectComponent
+        _enabled="1"
+        _tags="enabled_in_world"
+        radius="12" />
+
+    <ProjectileComponent
+        _enabled="1"
+        _tags="enabled_in_world"
+        collide_with_shooter_frames="0"
+        collide_with_world="0"
+        damage="0"
+        damage_game_effect_entities="data/entities/misc/effect_blindness.xml"
+        friendly_fire="1"
+        on_collision_die="0"
+        on_collision_spawn_entity="0"
+        penetrate_entities="1"
+        speed_min="0"
+        speed_max="0" />
+
     <Entity>
         <ItemComponent
-            _tags="enabled_in_inventory" />
+            _enabled="1"
+            _tags="enabled_in_world,enabled_in_inventory" />
 
-        <InheritTransformComponent />
+        <InheritTransformComponent
+            _tags="enabled_in_inventory,enabled_in_world"
+            always_use_immediate_parent_rotation="0"
+            only_position="1" />
 
         <PhysicsBodyComponent
             _tags="enabled_in_inventory"
@@ -50,6 +64,7 @@
             offset_x="16"
             offset_y="24"
             text="Jebaited!"
+            update_transform_rotation="0"
             z_index="-1" />
     </Entity>
 </Entity>
