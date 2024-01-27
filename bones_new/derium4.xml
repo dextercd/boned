@@ -50,7 +50,7 @@
         stat_times_player_has_shot="157"
         swim_propel_amount="0"
         throw_as_item="0"
-        ui_name="derium4: $item_wand_good_3"
+        ui_name="derium4: Wand of Multitudes"
         use_entity_file_as_projectile_info_proxy="0"
         use_gun_script="1" >
 
@@ -216,7 +216,7 @@
         is_identified="1"
         is_pickable="1"
         is_stackable="0"
-        item_name="derium4: $item_wand_good_3"
+        item_name="derium4: Wand of Multitudes"
         item_pickup_radius="14.1"
         mFramePickedUp="39416"
         max_child_items="0"

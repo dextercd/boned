@@ -50,7 +50,7 @@
         stat_times_player_has_shot="3482"
         swim_propel_amount="0"
         throw_as_item="0"
-        ui_name="larandar2: $item_wand_good_1"
+        ui_name="larandar2: Wand of Swiftness"
         use_entity_file_as_projectile_info_proxy="0"
         use_gun_script="1" >
 
@@ -200,7 +200,7 @@
         is_identified="1"
         is_pickable="1"
         is_stackable="0"
-        item_name="larandar2: $item_wand_good_1"
+        item_name="larandar2: Wand of Swiftness"
         item_pickup_radius="14.1"
         mFramePickedUp="180204"
         max_child_items="0"

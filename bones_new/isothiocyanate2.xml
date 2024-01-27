@@ -50,7 +50,7 @@
         stat_times_player_has_shot="0"
         swim_propel_amount="0"
         throw_as_item="1"
-        ui_name="isothiocyanate2: $item_egg_purple"
+        ui_name="isothiocyanate2: Chilly egg"
         use_entity_file_as_projectile_info_proxy="0"
         use_gun_script="0" >
 
@@ -320,7 +320,7 @@
         is_identified="1"
         is_pickable="1"
         is_stackable="0"
-        item_name="isothiocyanate2: $item_egg_purple"
+        item_name="isothiocyanate2: Chilly egg"
         item_pickup_radius="14.1"
         mFramePickedUp="3712"
         max_child_items="0"
