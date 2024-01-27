@@ -8,7 +8,7 @@ function glob(g)
     local prepend = ""
     if jit.os == 'Windows' then
         dir_it = io.popen("dir /b " .. g)
-        prepend = g:match([=[^[^/\]*[/\]]=])
+        prepend = g:match(".*[/\\]")
     else
         dir_it = io.popen("sh -c 'ls -1 " .. g .. "'")
     end
@@ -16,7 +16,6 @@ function glob(g)
     if not dir_it then
         error("Couldn't get list of .xml files")
     end
-
 
     local file_names = {}
     for file in dir_it:lines() do
