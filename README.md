@@ -2,7 +2,7 @@
 
 Bones files where the wands were renamed so that they contain the orginal name and the file name.
 
-For instance, `"Propane Tank?!"` is renamed to `"lasiace3: Propane Tank?!"`.
+For instance, `"Propane Tank?!"` is renamed to `"lasiace3: Propane Tank?!"` because it's inside `lasciace3.xml`.
 
 # Instructions
 
